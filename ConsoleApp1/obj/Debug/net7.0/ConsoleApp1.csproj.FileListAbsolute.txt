@@ -13,4 +13,3 @@ C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleA
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.pdb
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ref\ConsoleApp1.dll
-C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.runtimeconfig.dev.json

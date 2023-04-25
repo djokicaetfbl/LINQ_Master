@@ -243,7 +243,90 @@ namespace ConsoleApp1
             //var lastDog = pets.LastOrDefault(x => x.PetType == PetType.Dog);
             //Console.WriteLine(lastDog);
 
+            var numbers5 = new[] { 1, 2, 3, 4, 5 };
+            var numbers6 = new[] { 4, 5, 6, 7 };
+
+            var allNumbers = numbers5.Concat(numbers6);
+            var allDistinctNumbers = numbers5.Union(numbers6);
+
+            //foreach(var i in allNumbers)
+            //{
+            //    Console.WriteLine(i);
+            //}
+            //Console.WriteLine("-----------------------------");
+            //foreach (var i in allDistinctNumbers)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+            var pets1 = new[]
+            {
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+                new Pet(2, "Anthony", PetType.Cat, 2f)
+            };
+
+            var pets2 = new[]
+{
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+            };
+
+            var unionOfPets = pets1.Union(pets2, new PetComparerById());// by default reference types are compared by reference. We need to imeplement Comparator to check Equals
+
+            foreach(var y in unionOfPets)
+            {
+                Console.WriteLine(y);
+            }
+
+            //Console.WriteLine(unionOfPets);
+
+            //var news = new[]
+            //{
+            //    new News(NewsPriority.High, new DateTime(2021,10,6), "Title1"),
+            //    new News(NewsPriority.Low, new DateTime(2021,10,5), "Title2"),
+            //    new News(NewsPriority.Medium, new DateTime(2021,10,4), "Title3"),
+            //    new News(NewsPriority.Medium, new DateTime(2021,10,3), "Title4"),
+            //    new News(NewsPriority.High, new DateTime(2021,10,2), "Title5"),
+            //    new News(NewsPriority.Low, new DateTime(2021,10,1), "Title6"),
+            //};
+
+            //var threeMostHighestNews = SelectRecentAndImportant(news);
+
+            //foreach(var i in threeMostHighestNews)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+            var fox = "f_o!_!x";
+            var duck = "d_3uc(k))";
+
+            Console.WriteLine(CleanWord(fox));
+            Console.WriteLine(CleanWord(duck));
+
+
             Console.ReadKey();
+        }
+
+        public static string CleanWord(string word)
+        {
+            var wordsAsCharArray = word.ToCharArray();
+            var justLetters = wordsAsCharArray
+                .Where(character => char.IsLetter(character));
+            var nonLetters = wordsAsCharArray
+                .Where(character => !char.IsLetter(character)).Distinct();
+
+            /*var concatenatedChars = justLetters.Concat(nonLetters).ToArray();
+            return new string(concatenatedChars);*/
+
+            return new string(justLetters.Concat(nonLetters).ToArray());
+        }
+
+        public static IEnumerable<News> SelectRecentAndImportant(IEnumerable<News> list)
+        {
+            return list
+                .OrderByDescending(news => news.NewsDateTime)
+                .ThenByDescending(news => news.Priority)
+                .Take(3);
+                //.Union(list.Where(news => news.Priority == NewsPriority.High));
         }
 
         public static int? LengthOfTheShortestWord(IEnumerable<string> word)
