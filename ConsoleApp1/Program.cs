@@ -279,15 +279,15 @@ namespace ConsoleApp1
 
             //Console.WriteLine(unionOfPets);
 
-            //var news = new[]
-            //{
-            //    new News(NewsPriority.High, new DateTime(2021,10,6), "Title1"),
-            //    new News(NewsPriority.Low, new DateTime(2021,10,5), "Title2"),
-            //    new News(NewsPriority.Medium, new DateTime(2021,10,4), "Title3"),
-            //    new News(NewsPriority.Medium, new DateTime(2021,10,3), "Title4"),
-            //    new News(NewsPriority.High, new DateTime(2021,10,2), "Title5"),
-            //    new News(NewsPriority.Low, new DateTime(2021,10,1), "Title6"),
-            //};
+            var news = new[]
+            {
+                new News(NewsPriority.High, new DateTime(2021,10,6), "Title1"),
+                new News(NewsPriority.Low, new DateTime(2021,10,5), "Title2"),
+                new News(NewsPriority.Medium, new DateTime(2021,10,4), "Title3"),
+                new News(NewsPriority.Medium, new DateTime(2021,10,3), "Title4"),
+                new News(NewsPriority.High, new DateTime(2021,10,2), "Title5"),
+                new News(NewsPriority.Low, new DateTime(2021,10,1), "Title6"),
+            };
 
             //var threeMostHighestNews = SelectRecentAndImportant(news);
 
@@ -302,6 +302,43 @@ namespace ConsoleApp1
             Console.WriteLine(CleanWord(fox));
             Console.WriteLine(CleanWord(duck));
 
+            var newAsEnumerable = news.AsEnumerable().Where(news => news.Priority == NewsPriority.High);
+
+            Console.WriteLine("==============================");
+
+            newAsEnumerable.ToList().ForEach(news => Console.WriteLine(news));
+
+            var doubledNumbers = numbers.Select(number => number * 2);
+
+            doubledNumbers.ToList().ForEach(x => Console.WriteLine(x));
+
+            var wordsToUpperCase = words.Select(x => x.ToUpper());
+
+            wordsToUpperCase.ToList().ForEach(x => Console.WriteLine(x));
+
+            var numbersAsStrings = numbers.Select(x => x.ToString());
+
+            var numberedWords = words.Select((word, index) => $"{index + 1}. {word}");
+
+            numberedWords.ToList().ForEach(x => Console.WriteLine(x));
+
+            var weightsOfPets = pets.Select(pet => pet.Value);
+
+            weightsOfPets.ToList().ForEach(x => Console.WriteLine(x));
+
+            var heavyPetTypes = pets
+                .Where(pet => pet.Value > 4)
+                .Select(pet => pet.PetType)
+                .Distinct();
+
+            heavyPetTypes.ToList().ForEach(x => Console.WriteLine(x));
+
+            var petsInitials = pets
+                .OrderBy(pet => pet.Name)
+                .Select(pet => $"{pet.Name.First()}.");
+
+            petsInitials.ToList().ForEach(x => Console.WriteLine(x));
+
 
             Console.ReadKey();
         }
@@ -309,6 +346,7 @@ namespace ConsoleApp1
         public static string CleanWord(string word)
         {
             var wordsAsCharArray = word.ToCharArray();
+
             var justLetters = wordsAsCharArray
                 .Where(character => char.IsLetter(character));
             var nonLetters = wordsAsCharArray
