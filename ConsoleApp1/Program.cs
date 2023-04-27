@@ -272,10 +272,10 @@ namespace ConsoleApp1
 
             var unionOfPets = pets1.Union(pets2, new PetComparerById());// by default reference types are compared by reference. We need to imeplement Comparator to check Equals
 
-            foreach(var y in unionOfPets)
-            {
-                Console.WriteLine(y);
-            }
+            //foreach(var y in unionOfPets)
+            //{
+            //    Console.WriteLine(y);
+            //}
 
             //Console.WriteLine(unionOfPets);
 
@@ -296,51 +296,232 @@ namespace ConsoleApp1
             //    Console.WriteLine(i);
             //}
 
-            var fox = "f_o!_!x";
-            var duck = "d_3uc(k))";
+            //var fox = "f_o!_!x";
+            //var duck = "d_3uc(k))";
 
-            Console.WriteLine(CleanWord(fox));
-            Console.WriteLine(CleanWord(duck));
+            //Console.WriteLine(CleanWord(fox));
+            //Console.WriteLine(CleanWord(duck));
 
-            var newAsEnumerable = news.AsEnumerable().Where(news => news.Priority == NewsPriority.High);
+            //var newAsEnumerable = news.AsEnumerable().Where(news => news.Priority == NewsPriority.High);
 
-            Console.WriteLine("==============================");
+            //Console.WriteLine("==============================");
 
-            newAsEnumerable.ToList().ForEach(news => Console.WriteLine(news));
+            //newAsEnumerable.ToList().ForEach(news => Console.WriteLine(news));
 
-            var doubledNumbers = numbers.Select(number => number * 2);
+            //var doubledNumbers = numbers.Select(number => number * 2);
 
-            doubledNumbers.ToList().ForEach(x => Console.WriteLine(x));
+            //doubledNumbers.ToList().ForEach(x => Console.WriteLine(x));
 
-            var wordsToUpperCase = words.Select(x => x.ToUpper());
+            //var wordsToUpperCase = words.Select(x => x.ToUpper());
 
-            wordsToUpperCase.ToList().ForEach(x => Console.WriteLine(x));
+            //wordsToUpperCase.ToList().ForEach(x => Console.WriteLine(x));
 
-            var numbersAsStrings = numbers.Select(x => x.ToString());
+            //var numbersAsStrings = numbers.Select(x => x.ToString());
 
-            var numberedWords = words.Select((word, index) => $"{index + 1}. {word}");
+            //var numberedWords = words.Select((word, index) => $"{index + 1}. {word}");
 
-            numberedWords.ToList().ForEach(x => Console.WriteLine(x));
+            //numberedWords.ToList().ForEach(x => Console.WriteLine(x));
 
-            var weightsOfPets = pets.Select(pet => pet.Value);
+            //var weightsOfPets = pets.Select(pet => pet.Value);
 
-            weightsOfPets.ToList().ForEach(x => Console.WriteLine(x));
+            //weightsOfPets.ToList().ForEach(x => Console.WriteLine(x));
 
-            var heavyPetTypes = pets
-                .Where(pet => pet.Value > 4)
-                .Select(pet => pet.PetType)
-                .Distinct();
+            //var heavyPetTypes = pets
+            //    .Where(pet => pet.Value > 4)
+            //    .Select(pet => pet.PetType)
+            //    .Distinct();
 
-            heavyPetTypes.ToList().ForEach(x => Console.WriteLine(x));
+            //heavyPetTypes.ToList().ForEach(x => Console.WriteLine(x));
 
-            var petsInitials = pets
-                .OrderBy(pet => pet.Name)
-                .Select(pet => $"{pet.Name.First()}.");
+            //var petsInitials = pets
+            //    .OrderBy(pet => pet.Name)
+            //    .Select(pet => $"{pet.Name.First()}.");
 
-            petsInitials.ToList().ForEach(x => Console.WriteLine(x));
+            //petsInitials.ToList().ForEach(x => Console.WriteLine(x));
 
+            //List<object> listOfDifferentsObjects = new List<object>
+            //{
+            //    "1",3,"abc", new DateTime(2020,1,2),true,"10"
+            //};
+
+            //GetNumbers(listOfDifferentsObjects);
+
+            //var peoples = "John Smith, 1983/08/21;Jane Doe, 1993/12/21;Francis Brown, invalid date here";
+
+            var people = new[]
+            {
+                new PetOwner(1, "John", new[]
+                {
+                    pets.ElementAt(0),
+                    pets.ElementAt(1)
+                }),
+                new PetOwner(2, "Jack", new[]
+                {
+                    pets.ElementAt(2),
+                }),
+                new PetOwner(3, "Stephanie", new[]
+                {
+                    pets.ElementAt(3),
+                    pets.ElementAt(4),
+                    pets.ElementAt(5)
+                }),
+            };
+            var personsPet = people
+                .Where(x => x.Name.StartsWith("J"))
+                .SelectMany(x => x.Pets)
+                .Select(x => x.Name);
+
+            //Console.WriteLine("====================================");
+            //personsPet.ToList().ForEach(x => Console.WriteLine(x));
+
+            var nestedListOfNumbers = new List<List<List<int>>>
+            {
+                new List<List<int>>
+                {
+                new List<int> {1, 2, 3 },
+                new List<int> {4,5,6},
+                new List<int> {5,6}
+                },
+                new List<List<int>>
+                {
+                new List<int> {10, 12, 13 },
+                new List<int> {14,15},
+                },
+            };
+
+            var sumN = nestedListOfNumbers
+                .SelectMany(innerList => innerList)
+                .SelectMany(innerInnerList => innerInnerList);
+
+            //sumN.ToList().ForEach(x => Console.WriteLine(x));
+            //Console.WriteLine("Suma: "+sumN.Sum());
+
+            var ownerPetPairsInfo = people
+                .SelectMany(petOwner => petOwner.Pets,
+                (petOwner, pet) => $"{petOwner.Name} is the owener of {pet.Name}"
+                );
+
+            //ownerPetPairsInfo.ToList().ForEach(x => Console.WriteLine(x));
+
+            var students = new[]
+            {
+                new Student("Lucy", "Lucyic", new[]{3,6,2,6}),
+                new Student("Tom", "Tomic", new[]{4,5}),
+                new Student("Alice", "Aliceic", new[]{3,3,5}),
+                new Student("Brian", "Brianic", new[]{2,3,3}),
+            };
+
+            //var bestMarkStudents = BestMarksAndStudents(students);
+            //bestMarkStudents.ToList().ForEach(student => Console.WriteLine(student));
+
+            //Generating new collections :D
+
+            var emptyInts = Enumerable.Empty<int>();
+            var tenCopiesOf100 = Enumerable.Repeat(100, 10);
+
+            //tenCopiesOf100.ToList().ForEach(x => Console.WriteLine(x));
+
+            var tenToThirty = Enumerable.Range(10, 21); // increase 10 for 21 (++)
+
+            //tenToThirty.ToList().ForEach(x => Console.WriteLine(x));
+
+            var powersOf2 = Enumerable.Range(0, 10)
+                        .Select(x => Math.Pow(x, 2));
+
+            var nonEmptyNumbers = new[] { 1, 2, 3 };
+            var defaultEmpty1 = nonEmptyNumbers.DefaultIfEmpty();
+
+            defaultEmpty1.ToList().ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine(defaultEmpty1);
+
+            var emptyNumers = new int[0];
+            var defaultEmpty2 = emptyNumers.DefaultIfEmpty();
+
+            Console.WriteLine(defaultEmpty2);
+
+            defaultEmpty2.ToList().ForEach(x => Console.WriteLine(x));
 
             Console.ReadKey();
+        }
+        
+        public static IEnumerable<string> BestMarksAndStudents(IEnumerable<Student> students)
+        {
+            return students
+                .SelectMany(student => student.Marks,
+                (student, mark) => new { Student = student, Mark = mark })
+                .OrderByDescending(student => student.Mark) //.OrderByDescending(student => student.Student.Marks)
+                .ThenByDescending(student => student.Student.LastName)
+                .Take(5)
+                .Select(student => $"{student.Student.FirstName} : {student.Mark}");
+        }
+
+        public static IEnumerable<Person> PeopleFromString(string input)
+        {
+            return input.Split(";")
+                .Select(x =>
+                {
+                    try
+                    {
+                        var split = x.Split(",");
+                        var fullName = split[0].Split(" ");
+                        var firstName = fullName[0];
+                        var lastName = fullName[1];
+                        var dateOfBirth = DateTime.Parse(split[1]);
+
+                        return new Person
+                        {
+                            FirstName = firstName,
+                            LastName = lastName,
+                            DateOfBirth = dateOfBirth
+                        };
+
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
+                });
+
+            /* IEnumerable<Person> bla = input.Split(";")
+                 .Select(x =>
+                 {
+                     try
+                     {
+                         var split = x.Split(",");
+                         var fullName = split[0].Split(" ");
+                         var firstName = fullName[0];
+                         var lastName = fullName[1];
+                         var dateOfBirth = DateTime.Parse(split[1]);
+
+                         return new Person
+                         {
+                             FirstName = firstName,
+                             LastName = lastName,
+                             DateOfBirth = dateOfBirth
+                         };
+                     }
+                     catch (Exception e)
+                     {
+                         return null;
+                     }
+                 });
+
+             return bla;*/
+        }
+        public static IEnumerable<int> GetNumbers(IEnumerable<object> objects)
+        {
+            return objects.OfType<int>().Concat(
+                    objects.OfType<string>()
+                                .Select(text => {
+                                    int result;
+                                    return int.TryParse(text, out result) ?
+                                    result :
+                                    (int?)null;
+                                })
+                                .Where(nullableNumber => nullableNumber != null)
+                                .Select(nullableNumber => nullableNumber.Value))
+                                .OrderBy(number => number);
         }
 
         public static string CleanWord(string word)

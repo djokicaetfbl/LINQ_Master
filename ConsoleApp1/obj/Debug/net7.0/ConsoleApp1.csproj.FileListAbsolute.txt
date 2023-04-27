@@ -13,3 +13,18 @@ C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleA
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.pdb
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\Korisnik\Desktop\LINQ - MASTER\consoleApp - .net 7\ConsoleApp1\ConsoleApp1\obj\Debug\net7.0\ref\ConsoleApp1.dll
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.exe
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.deps.json
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.runtimeconfig.json
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.dll
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\bin\Debug\net7.0\ConsoleApp1.pdb
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.dll
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\refint\ConsoleApp1.dll
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.pdb
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ConsoleApp1.genruntimeconfig.cache
+C:\Users\djordje.palavestra\Desktop\LINQ Master\LINQ_Master\ConsoleApp1\obj\Debug\net7.0\ref\ConsoleApp1.dll
