@@ -431,18 +431,138 @@ namespace ConsoleApp1
             var nonEmptyNumbers = new[] { 1, 2, 3 };
             var defaultEmpty1 = nonEmptyNumbers.DefaultIfEmpty();
 
-            defaultEmpty1.ToList().ForEach(x => Console.WriteLine(x));
+            //defaultEmpty1.ToList().ForEach(x => Console.WriteLine(x));
 
-            Console.WriteLine(defaultEmpty1);
+            //Console.WriteLine(defaultEmpty1);
 
             var emptyNumers = new int[0];
             var defaultEmpty2 = emptyNumers.DefaultIfEmpty();
 
-            Console.WriteLine(defaultEmpty2);
+           //Console.WriteLine(defaultEmpty2);
 
-            defaultEmpty2.ToList().ForEach(x => Console.WriteLine(x));
+            //defaultEmpty2.ToList().ForEach(x => Console.WriteLine(x));
+
+            var petsWeightByTypeLookup = pets
+                .ToLookup(pet => pet.PetType,
+                          pet => pet.Value);
+
+            /*foreach(var pet in petsWeightByTypeLookup)
+            {
+                Console.WriteLine($"{pet.Key}");
+                foreach(var count in pet)
+                {
+                    Console.WriteLine($"{count}");
+                }
+            }*/
+
+            //petsWeightByTypeLookup.ToList().ForEach(petLookup =>
+            //{
+            //    Console.Write($"Key: {petLookup.Key} Values (count: {petLookup.Count()}) :");
+
+            //    petLookup.ToList().ForEach(value => Console.Write($"{value},"));
+
+            //    Console.WriteLine();
+            //});
+
+            var sumofWeightsPetType = petsWeightByTypeLookup.ToDictionary(
+                lookup => lookup.Key,
+                lookup => lookup.Sum());
+
+            //sumofWeightsPetType.ToList().ForEach(x => Console.WriteLine($"{x.Value}, {x.Key}"));
+
+            var groupings = pets.GroupBy(
+                pet => pet.PetType,
+                pet => pet.Value);
+
+            var sumofWeightsPetTypeGroupingBy = groupings.ToDictionary(
+                grouping => grouping.Key,
+                grouping => grouping.Sum()
+                );
+            //Console.WriteLine("===========================");
+
+            //sumofWeightsPetTypeGroupingBy.ToList().ForEach(x => Console.WriteLine($"{x.Value}, {x.Key}"));
+
+            //GroupBy do All operations on database side, and on thah way does not impact on memory. For objects in apllications memory it does not metter what to use, but for database groupby is bettter because it work on database side.
+
+            var personsInitialsToPetsMapping = people
+                .GroupBy(person => person.Name)
+                .ToDictionary(grouping => grouping.Key + ".",
+                            grouping => string.Join(" ,", grouping.SelectMany(person => person.Pets).Select(pet => pet.Name))
+                );
+
+            //personsInitialsToPetsMapping.ToList().ForEach(x => Console.WriteLine($"{x.Value} {x.Key}"));
+
+            var weightGroups = pets.GroupBy(
+                pet => Math.Floor(pet.Value),
+                (key, pets) => new
+                {
+                    WeightFloor = key,
+                    MinWeight = pets.Min(pet => pet.Value),
+                    MaxWeight = pets.Max(pet => pet.Value)
+                })
+                .OrderBy(x => x.WeightFloor)
+                .Select(x => $"Weight group: {x.WeightFloor}, min weight: {x.MinWeight}, max weight: {x.MaxWeight}");
+
+            //weightGroups.ToList().ForEach(x => Console.WriteLine(x));
+
+            var mostFrequent1 = "grass";
+            var mostFrequent2 = "Bumblebee";
+
+            //Console.WriteLine("Most frequent: "+ GetTheMostFrequentCharacter(mostFrequent1));
+            //Console.WriteLine("Most frequent: " + GetTheMostFrequentCharacter(mostFrequent2));
+
+            //Console.WriteLine("Most frequent: " + FindTheHeaviestPetType(pets));
+
+            var intersect1 = new[] { 1, 2, 3, 4, 5, 6 };
+            var intersect2 = new[] { 4, 5, 6, 7, 8, 9, 10 };
+
+            var inter = intersect1.Intersect(intersect2);
+            //inter.ToList().ForEach(x => Console.WriteLine(x));
+            var exclusive = intersect1.Except(intersect2);
+            //exclusive.ToList().ForEach(x => Console.WriteLine(x));
+
+            var pets11 = new[]
+            {
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+                new Pet(2, "Anthony", PetType.Cat, 2f)
+            };
+
+            var pets22 = new[]
+            {
+                new Pet(1, "Hannibal", PetType.Fish, 1.1f),
+            };
+
+            var petInterSection = pets1.Intersect(pets2);
+            //petInterSection.ToList().ForEach(x => Console.WriteLine(x));
+
+            var petInterSectionCustomComparer = pets1.Intersect(pets2, new PetComparerById()); // for reference type we need to implement custom Comparer, because default reference point to defferent addresses on memory
+            //petInterSectionCustomComparer.ToList().ForEach(x => Console.WriteLine(x));
+
+
 
             Console.ReadKey();
+        }
+
+        public static PetType FindTheHeaviestPetType(IEnumerable<Pet> pets)
+        {
+            return pets.GroupBy(pet => pet.PetType)
+                .OrderBy(pet => pet.Average(pet => pet.Value))
+                .Last()
+                .Key;
+        }
+
+        public static string GetTheMostFrequentCharacter(string text)
+        {
+            return text.ToLower()
+                .GroupBy(x => x,
+                (key, cahracter) => new
+                {
+                    character = key,
+                    characterCount = cahracter.Count()
+                })
+                .OrderByDescending(x => x.characterCount)
+                .FirstOrDefault().ToString();
+                //.Key;
         }
         
         public static IEnumerable<string> BestMarksAndStudents(IEnumerable<Student> students)
